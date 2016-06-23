@@ -1,42 +1,44 @@
 <html>
-<head>
+<head></head>
+<body>
 
-    <script>
-        function sendValues(param){
-            xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange=callback;
-            var url ="operatiiMatematiceAjax" + "?nr1=" + document.getElementById("nr1").value +
-                    "&nr2=" + document.getElementById("nr2").value +
-                    "&nr3=" + document.getElementById("nr3").value + "&op=" + param;
-            xmlHttp.open("GET",url,true);
-            xmlHttp.send();
-        }
-        function callback() {
-            if(xmlHttp.readyState==4 && xmlHttp.status==200) {
-                var value = xmlHttp.responseText;
-                document.getElementById("resultArea").innerHTML = value;
-            }
-        }
-    </script>
-
-</head>
-
-
-<br>
 <h2>Basic Math!</h2>
 
 
-Nr1:<input type="text" name="nr1" id="nr1" /></br>
-Nr2:<input type="text" name="nr2" id="nr2" /></br>
-Nr2:<input type="text" name="nr3" id="nr3" /></br>
-
+Nr1:  <input type="text" name="nr1" id="nr1" /></br>
+Nr2:  <input type="text" name="nr2" id="nr2" /></br>
+Nr2:  <input type="text" name="nr3" id="nr3" /></br>
+</br>
 <input type="button" name="a" id="a" value="+" onclick="sendValues(1)"/>&nbsp;
 <input type="button" name="s" id="s" value="-" onclick="sendValues(2)"/>&nbsp;
 <input type="button" name="in" id="in" value="*" onclick="sendValues(3)"/>&nbsp;
 <input type="button" name="im" id="im" value="/" onclick="sendValues(4)"/>&nbsp;
+<input type="button" id="show" value="Show Op" onclick="ReadResults()">&nbsp;
+<input type="button" id="clear" value="Clear History" onclick="deleteDataBase()">&nbsp;
 
 
 </br>
 <div id="resultArea"></div>
+</br>
+
+<div>
+    <table id="tableArea">
+        <thead>
+        <tr>
+            <th>Operation</th>
+            <th>Result</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
 </body>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous">
+</script>
+<script src="app.js"></script>
+
 </html>

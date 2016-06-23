@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
 
 /**
  * Created by sebastian on 18.06.2016.
@@ -35,5 +33,71 @@ public class DB {
             e.printStackTrace();
         }
     }
+    public StringBuilder read() {
+        StringBuilder out = new StringBuilder();
+
+        try {
+            // 1. load driver
+            Class.forName("org.postgresql.Driver");
+
+            // 2. define connection params to db
+            final String URL = "jdbc:postgresql://54.93.65.5:5432/4_sebastian";
+            final String USERNAME = "fasttrackit_dev";
+            final String PASSWORD = "fasttrackit_dev";
+
+            // 3. obtain a connection
+            Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
+            // 4. create a query statement
+            Statement st = conn.createStatement();
+
+            ResultSet rs = st.executeQuery("SELECT Id, rezultate FROM numbers");
+
+            while (rs.next()) {
+                out
+                        .append("<tr><td>")
+                        .append(rs.getString("id").trim())
+                        .append("</td><td>")
+                        .append(rs.getString("rezultate").trim())
+                        .append("</td></tr>");
+            }
+
+            // 6. close the objects
+            rs.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return out;
+    }
+    public void delete() {
+        try {
+            // 1. load driver
+            Class.forName("org.postgresql.Driver");
+
+            // 2. define connection params to db
+            final String URL = "jdbc:postgresql://54.93.65.5:5432/4_sebastian";
+            final String USERNAME = "fasttrackit_dev";
+            final String PASSWORD = "fasttrackit_dev";
+
+            // 3. obtain a connection
+            Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
+            // 4. create a query statement
+            PreparedStatement pSt = conn.prepareStatement("TRUNCATE TABLE numbers RESTART IDENTITY;");
+
+
+            // 5. execute a prepared statement
+            int rowsInserted = pSt.executeUpdate();
+
+
+            // 6. close the objects
+            pSt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
-//com
+
