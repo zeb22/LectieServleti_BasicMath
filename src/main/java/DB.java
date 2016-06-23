@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
  * Created by sebastian on 18.06.2016.
  */
 public class DB {
-    public static void insert(double value) {
+    public void insert(double value) {
 
         try {
             // 1. load driver

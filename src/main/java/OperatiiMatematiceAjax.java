@@ -38,11 +38,7 @@ public class OperatiiMatematiceAjax extends HttpServlet {
                 break;
         }
 
-
-
-        out.println("result is here: <b>" + resultValue + "</b>");
-
+        out.println("Result is here: <b>" + resultValue + "</b>");
         out.close();
-
     }
 }

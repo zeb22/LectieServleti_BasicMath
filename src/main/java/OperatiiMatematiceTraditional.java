@@ -55,5 +55,6 @@ public class OperatiiMatematiceTraditional extends HttpServlet {
 
         DB d = new DB();
         d.insert(resultValue);
+
     }
 }
