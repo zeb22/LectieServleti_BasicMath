@@ -11,16 +11,16 @@ public class OperatiiMatematiceAjax extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        PrintWriter out =resp.getWriter();
+        PrintWriter out = resp.getWriter();
 
-        String sNr1 = req.getParameter("nr1");
-        String sNr2 = req.getParameter("nr2");
-        String sNr3 = req.getParameter("nr3");
-        String sOp = req.getParameter("op");
+        String sNr1=req.getParameter("nr1");
+        String sNr2=req.getParameter("nr2");
+        String sNr3=req.getParameter("nr3");
+        String sOp=req.getParameter("op");
 
-        int nr1 = Integer.parseInt(sNr1);
-        int nr2 = Integer.parseInt(sNr2);
-        int nr3 = Integer.parseInt(sNr3);
+        int nr1=Integer.parseInt(sNr1);
+        int nr2=Integer.parseInt(sNr2);
+        int nr3=Integer.parseInt(sNr3);
         double resultValue = 0;
 
         switch (sOp) {
@@ -34,11 +34,18 @@ public class OperatiiMatematiceAjax extends HttpServlet {
                 resultValue = nr1 * nr2 * nr3;
                 break;
             case "4":
-                resultValue = (double) nr1 / (nr2 * nr3);
+                resultValue = (double) nr1 / nr2 / nr3;
                 break;
         }
 
-        out.println("Result is here: <b>" + resultValue + "</b>");
+
+
+        out.println("result is here: <b>"+resultValue+"</b>");
+
         out.close();
+
+        //insert to DB
+        DB.insert(resultValue);
+
     }
 }

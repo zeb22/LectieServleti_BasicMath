@@ -23,7 +23,7 @@ public class OperatiiMatematiceTraditional extends HttpServlet {
 
         int nr1 = Integer.parseInt(sNr1);
         int nr2 = Integer.parseInt(sNr2);
-        int nr3=Integer.parseInt(sNr3);
+        int nr3 = Integer.parseInt(sNr3);
         double resultValue = 0;
 
         switch (sOp) {
@@ -47,13 +47,13 @@ public class OperatiiMatematiceTraditional extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("Result is: <b>" + resultValue + "</b>");
+
+
         out.close();
 
         out.println("</body>");
 
         //insert to DB
-
-//        DB d = new DB();
         DB.insert(resultValue);
     }
 }
