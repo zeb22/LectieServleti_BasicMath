@@ -34,7 +34,7 @@ public class DB {
         }
     }
     public StringBuilder read() {
-        StringBuilder out = new StringBuilder();
+        StringBuilder htmlResponse = new StringBuilder();
 
         try {
             // 1. load driver
@@ -49,12 +49,13 @@ public class DB {
             Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
             // 4. create a query statement
-            Statement st = conn.createStatement();
+            String query = "select \"Id\", rezultate from numbers";
 
-            ResultSet rs = st.executeQuery("SELECT Id, rezultate FROM numbers");
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                out
+                htmlResponse
                         .append("<tr><td>")
                         .append(rs.getString("id").trim())
                         .append("</td><td>")
@@ -69,7 +70,7 @@ public class DB {
             e.printStackTrace();
         }
 
-        return out;
+        return htmlResponse;
     }
     public void delete() {
         try {

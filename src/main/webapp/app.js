@@ -10,8 +10,7 @@ function sendValues(param){
 
 function callback() {
     if(xmlHttp.readyState==4 && xmlHttp.status==200) {
-        var value = xmlHttp.responseText;
-        document.getElementById("resultArea").innerHTML = value;
+        document.getElementById("resultArea").innerHTML = xmlHttp.responseText;
     }
 }
 
@@ -22,7 +21,7 @@ function ReadResults() {
     $.ajax({
         url: "readResultsFromDB"
     }).done(function (result) {
-        $('#tableArea tbody').html(result);
+        $('#tableArea').find('tbody').html(result);
     })
 }
 
@@ -31,6 +30,6 @@ function deleteDataBase() {
     $.ajax({
         url: "deleteDB"
     }).done(function (result) {
-        $('#tableArea tbody').html(result);
+        $('#tableArea').find('tbody').html(result);
     })
 }

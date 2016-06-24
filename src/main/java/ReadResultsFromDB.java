@@ -17,16 +17,16 @@ public class ReadResultsFromDB extends HttpServlet{
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        PrintWriter out = resp.getWriter();
+        PrintWriter htmlResponse = resp.getWriter();
 
         DB db = new DB();
-        db.read();
 
         StringBuilder dbResp = new StringBuilder();
 
         dbResp.append(db.read());
 
-        out.println(dbResp);
+        //server response
+        htmlResponse.println(dbResp);
     }
 }
 
