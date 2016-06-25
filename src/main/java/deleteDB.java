@@ -19,11 +19,6 @@ public class deleteDB extends HttpServlet{
         DB db = new DB();
         db.delete();
 
-        StringBuilder dbResp = new StringBuilder();
-
-        dbResp.append(db.read());
-
-        out.println(dbResp);
-
+        out.println(db.read());
     }
 }

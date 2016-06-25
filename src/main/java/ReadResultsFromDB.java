@@ -17,7 +17,7 @@ public class ReadResultsFromDB extends HttpServlet{
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        PrintWriter htmlResponse = resp.getWriter();
+        PrintWriter rasp = resp.getWriter();
 
         DB db = new DB();
 
@@ -26,7 +26,7 @@ public class ReadResultsFromDB extends HttpServlet{
         dbResp.append(db.read());
 
         //server response
-        htmlResponse.println(dbResp);
+        rasp.println(dbResp);
     }
 }
 
